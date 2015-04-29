@@ -3,10 +3,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Random;
 
-/**
- *
- * @author BioHazard99
- */
 public class Algoritmos {
 	
 	private static final BigInteger ZERO = BigInteger.ZERO;
