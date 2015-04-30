@@ -7,6 +7,8 @@ import java.util.Random;
 /**
  *
  * @author BioPeligro99
+ * @author Juan19932carlos
+ * 
  */
 public class NumerosPrimos {
 
@@ -42,8 +44,7 @@ public class NumerosPrimos {
         }
         return true;
     }
-    
-    
+        
     public static boolean esPrimoRaiz(BigInteger supPrimo) {
         BigInteger TWO = new BigInteger("2");
         BigInteger b = new BigInteger("1");
@@ -84,7 +85,6 @@ public class NumerosPrimos {
         }
         return r.toBigInteger();
     }
-    
     
     public static boolean esPrimoMillerRabin(BigInteger supPrime){
         return supPrime.isProbablePrime(10);
