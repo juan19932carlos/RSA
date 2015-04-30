@@ -5,6 +5,8 @@ import java.math.BigInteger;
 /**
  *
  * @author BioPeligro99
+ * @author Juan19932Carlos
+ * 
  */
 public class MetodosRSA {
 
