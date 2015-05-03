@@ -61,7 +61,15 @@ public class NumerosPrimos {
         }
         return true;
     }
-        
+    /**
+     * Comprueva la primalidad del numero ingresado realizando el modulo 
+     * con todos los numeros primos de 2 hasta el valor dado menos 1.
+     * 
+     * @param supPrimo e numero a comprovar su primalidad.
+     * @return {@code true} si el valor dado es primo o {@code false} 
+     *         en caso contrario
+     * 
+     */ 
     public static boolean esPrimoRaiz(BigInteger supPrimo) {
         BigInteger TWO = new BigInteger("2");
         BigInteger b = new BigInteger("1");
