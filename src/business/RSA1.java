@@ -13,9 +13,10 @@ public class RSA1 {
 
     public static void main(String[] args) {
         
-        BigInteger n =  new BigInteger("100160063");
+        BigInteger  n =  NumerosPrimos.aleatorio(100),
+                    m =  NumerosPrimos.aleatorio(100);;
         
-        System.out.println("# = " + MetodosRSA.phiEulerArreglo(n));
+        System.out.println("# = " + n + "\n # =" + m + " \n multiplicaion = " + m.multiply(n));
         
     }
     

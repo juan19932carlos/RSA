@@ -11,7 +11,17 @@ import java.util.Random;
  * 
  */
 public class NumerosPrimos {
-
+    
+    /**
+     * Retorna Un Numero primo aleatorio de del numero de cifras especificado 
+     * generando un numero aleatorio cualquiera y buscando ql numero primo 
+     * siguiente, se antiende que el numero de digitos es positivo, no se 
+     * hace correción de errores.
+     * 
+     * @param digitos Cantidad de digitos que tendra el numero aleatorio.
+     * @return El BigInteger es por a lo menos de el numero de cifras de {@code digitos}
+     * 
+     */    
     public static BigInteger aleatorio(int digitos) {
 
         String tmp = "";
@@ -19,11 +29,18 @@ public class NumerosPrimos {
         for (int i = 0; i < digitos; i++) {
             tmp += ((new Random().nextInt(10)) + "");
         }
-
         return new BigInteger(tmp).nextProbablePrime();
 
     }
-
+    /**
+     * Comprueva la primalidad del numero ingresado realizando el modulo 
+     * con todos los numeros primos de 2 hasta el valor dado menos 1.
+     * 
+     * @param supPrimo e numero a comprovar su primalidad.
+     * @return {@code true} si el valor dado es primo o {@code false} 
+     *         en caso contrario
+     * 
+     */ 
     public static boolean esPrimoFuerzaBruta(BigInteger supPrimo) {
 
         BigInteger x = new BigInteger("2");
