@@ -6,17 +6,19 @@ import data.NumerosPrimos;
 
 /**
  *
- * @author bhd
+ * @author BioPeligro99
+ * @author Juan19932carlos
+ * 
  */
 
 public class RSA1 {
 
     public static void main(String[] args) {
         
-        BigInteger  n =  NumerosPrimos.aleatorio(100),
-                    m =  NumerosPrimos.aleatorio(100);;
+        BigInteger  n = new BigInteger("2147483647");
+        BigInteger isPrime = NumerosPrimos.Raiz(n);
         
-        System.out.println("# = " + n + "\n # =" + m + " \n multiplicaion = " + m.multiply(n));
+        System.out.println(isPrime);
         
     }
     
