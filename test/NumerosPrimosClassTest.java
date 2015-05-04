@@ -47,7 +47,6 @@ public class NumerosPrimosClassTest {
     /**
      * Test para numeros primos aleatorios.
      */
-    @Ignore
     @Test
     public void testAleatorio() {
         System.out.println("Test - aleatorio");
