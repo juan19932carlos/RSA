@@ -9,6 +9,7 @@ import sun.security.jca.JCAUtil;
  *
  * @author BioPeligro99
  * @author Juan19932carlos
+ * @author Jamuq
  * 
  */
 public class NumerosPrimos {
