@@ -47,6 +47,7 @@ public class NumerosPrimosClassTest {
     /**
      * Test para numeros primos aleatorios.
      */
+    @Ignore
     @Test
     public void testAleatorio() {
         System.out.println("Test - aleatorio");
@@ -105,7 +106,18 @@ public class NumerosPrimosClassTest {
         System.out.println("Test - esPrimoMillerRabin");
         System.out.println(primo);
         boolean expResult = primo.isProbablePrime(13);
-        boolean result = NumerosPrimos.esPrimoMillerRabin(primo);
+        boolean result = NumerosPrimos.esPrimoMillerRabin(primo, 12);
+        System.out.println(result);
+        assertEquals(expResult, result);
+    }
+    
+    @Test( timeout = 30000 )
+    public void testPrimoDefinidoMillerRabin() {
+        System.out.println("Test - PrimoDefinidoMillerRabin");
+        BigInteger numero = new BigInteger("1999");
+        System.out.println(numero);
+        boolean expResult = numero.isProbablePrime(13);
+        boolean result = NumerosPrimos.esPrimoMillerRabin(numero, 12);
         System.out.println(result);
         assertEquals(expResult, result);
     }

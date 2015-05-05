@@ -3,6 +3,7 @@ package data;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Random;
+import sun.security.jca.JCAUtil;
 
 /**
  *
@@ -11,6 +12,11 @@ import java.util.Random;
  * 
  */
 public class NumerosPrimos {
+    
+    final static BigInteger CERO = BigInteger.ZERO;
+    final static BigInteger UNO = BigInteger.ONE;
+    final static BigInteger DOS = new BigInteger("2");
+    final static BigInteger TRES = new BigInteger("3");
     
     /**
      * Retorna Un Numero primo aleatorio de del numero de cifras especificado 
@@ -49,8 +55,6 @@ public class NumerosPrimos {
         if(supPrimo.compareTo(BigInteger.ZERO) < 0)
             throw new NumberFormatException("El parametro SupPrimo debe ser mayor a 0.");
         
-        BigInteger DOS = new BigInteger("2");
-        
         if(supPrimo.compareTo(DOS) == 0)
             return true;
         
@@ -60,7 +64,7 @@ public class NumerosPrimos {
         }
         
         BigInteger x = new BigInteger("3"),
-                   SupPrim_MenosUno= supPrimo.subtract(BigInteger.ONE);
+                   SupPrim_MenosUno= supPrimo.subtract(UNO);
 
         do{
             if (supPrimo.mod(x) == BigInteger.ZERO) {
@@ -82,20 +86,17 @@ public class NumerosPrimos {
     public static boolean esPrimoRaiz(BigInteger supPrimo) {
         if(supPrimo.compareTo(BigInteger.ZERO) < 0)
             throw new NumberFormatException("El parametro SupPrimo debe ser mayor a 0.");
-        
-        BigInteger DOS = new BigInteger("2");
-        
+                
         if(supPrimo.compareTo(DOS) == 0)
             return true;
         
         if(!supPrimo.testBit(0))
             return false;
         
-        BigInteger TRES = new BigInteger("3");
-        BigInteger r = Raiz(supPrimo).add(BigInteger.ONE);
+        BigInteger r = Raiz(supPrimo).add(UNO);
         
         if(!r.testBit(0))
-            r=r.subtract(BigInteger.ONE);
+            r=r.subtract(UNO);
         do{
             if (supPrimo.mod(r).compareTo(BigInteger.ZERO) == 0) {
                 return false;
@@ -141,8 +142,44 @@ public class NumerosPrimos {
         return r.toBigInteger();
     }
     
-    public static boolean esPrimoMillerRabin(BigInteger supPrime){
-        return supPrime.isProbablePrime(10);
+    public static boolean esPrimoMillerRabin(BigInteger supPrime , int repeticiones){
+        
+        if(supPrime.compareTo(DOS) == 0 )
+            return true;
+        if(!supPrime.testBit(0))
+            return false;        
+        
+        // Encontrar a y m tal que m es impar y  supPrime == 1 + 2**a * m
+        BigInteger SupPrimoMenosUno = supPrime.subtract(UNO);
+        BigInteger m = SupPrimoMenosUno;
+        
+        int a = m.getLowestSetBit();
+        
+        System.out.println(a);
+        
+        m = m.shiftRight(a);
+        
+        System.out.println("a = " + a + " y m = " + m);
+
+        // Inicio del test
+        Random rnd = new Random();
+        
+        for (int i=0; i<repeticiones; i++) {
+            // Generate a uniform random on (1, this)
+            BigInteger b;
+            do {
+                b = new BigInteger(supPrime.bitLength(), rnd);
+            } while (b.compareTo(UNO) <= 0 || b.compareTo(supPrime) >= 0);
+
+            int j = 0;
+            BigInteger z = b.modPow(m, supPrime);
+            while(!((j==0 && z.equals(UNO)) || z.equals(SupPrimoMenosUno))) {
+                if (j>0 && z.equals(UNO) || ++j==a)
+                    return false;
+                z = z.modPow(DOS, supPrime);
+            }
+        }
+        return true;
     }
     
 }

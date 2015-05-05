@@ -1,6 +1,7 @@
 package business;
 
 import java.math.BigInteger;
+import java.util.Random;
 import data.MetodosRSA;
 import data.NumerosPrimos;
 
@@ -18,7 +19,6 @@ public class RSA1 {
         BigInteger  n = new BigInteger("2147483647");
         BigInteger isPrime = NumerosPrimos.Raiz(n);
         
-        System.out.println(isPrime);
         
     }
     
