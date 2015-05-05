@@ -144,6 +144,9 @@ public class NumerosPrimos {
     
     public static boolean esPrimoMillerRabin(BigInteger supPrime , int repeticiones){
         
+        if (repeticiones <= 0)
+            throw new ArithmeticException(" el numero de repeticiones debe ser mayor que 0");
+            
         if(supPrime.compareTo(DOS) == 0 )
             return true;
         if(!supPrime.testBit(0))

@@ -38,20 +38,14 @@ public class MetodosRSA {
         BigInteger tmp = new BigInteger("1");
         BigInteger prodMenos = producto.subtract(BigInteger.ONE);
 
-        for (int i = 0; i < 3; i++) {
-            if (tmp.compareTo(prodMenos) != 1) {
-
-                if (producto.gcd(tmp).compareTo(BigInteger.ONE) == 0) {
-                    contador = contador.add(BigInteger.ONE);
-                }
-                i = 0;
-            } else {
-                i = 4;
+        do{
+            if (producto.gcd(tmp).compareTo(BigInteger.ONE) == 0) {
+                contador = contador.add(BigInteger.ONE);
             }
 
             tmp = tmp.add(BigInteger.ONE);
 
-        }
+        }while(tmp.compareTo(prodMenos) != 1);
 
         return contador;
     }
