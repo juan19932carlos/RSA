@@ -3,7 +3,6 @@ package data;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Random;
-import sun.security.jca.JCAUtil;
 
 /**
  *
@@ -117,7 +116,6 @@ public class NumerosPrimos {
      * 
      * @return retorna la raiz cuadrada redondeada de {@code numero}
      */
-    
     public static BigInteger Raiz(BigInteger numero) {
         int diff = numero.compareTo(BigInteger.ZERO);
         Math.sqrt(diff);
@@ -142,7 +140,15 @@ public class NumerosPrimos {
         }
         return r.toBigInteger();
     }
-    
+    /**
+     * Verifica si un numero es probable primo por medio de primalidad 
+     * Fuerte de Miller-Rabin realizando el numero de pruevas especificado 
+     * por {@code repeticiones}
+     * 
+     * @param repeticiones el parametro al cual se lehalara la raiz.
+     * 
+     * @return retorna {@code true} si el numero es pribable primo o {@code false} en caso contrario
+     */
     public static boolean esPrimoMillerRabin(BigInteger supPrime , int repeticiones){
         
         if (repeticiones <= 0)
@@ -165,11 +171,11 @@ public class NumerosPrimos {
         
         System.out.println("a = " + a + " y m = " + m);
 
-        // Inicio del test
-        Random rnd = new Random();
+        Random rnd;  
+        rnd = new Random();
         
         for (int i=0; i<repeticiones; i++) {
-            // Generate a uniform random on (1, this)
+            // Generar un numero aleatorio
             BigInteger b;
             do {
                 b = new BigInteger(supPrime.bitLength(), rnd);
@@ -185,6 +191,5 @@ public class NumerosPrimos {
         }
         return true;
     }
-    
 }
 

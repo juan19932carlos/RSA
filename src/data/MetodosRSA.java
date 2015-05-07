@@ -9,14 +9,28 @@ import java.math.BigInteger;
  * 
  */
 public class MetodosRSA {
+    
+    private static final BigInteger UNO = BigInteger.ONE;
 
-    public static BigInteger maxComDiv(BigInteger a, BigInteger b) {
-        return mcd(a, b);
+    public static BigInteger euclidesExtendido(BigInteger a, BigInteger b) {
+        if (a.compareTo(b) == -1) {  // Invierte si b es mayor a a
+            return euclidesExtendido(b, a);
+        }
+        if (a.compareTo(b) == 0) {
+            return a;
+        }
+        BigInteger resto    = a.mod(b),
+                   cociente = a.subtract(resto).divide(b) ;
+        
+        if (resto.compareTo(UNO) == 0) {
+            return cociente;
+        }
+        return euclidesExtendido(b, resto);
     }
 
-    private static BigInteger mcd(BigInteger a, BigInteger b) {
+    public static BigInteger mcd(BigInteger a, BigInteger b) {
         if (a.compareTo(b) == -1) {
-            return maxComDiv(b, a);
+            return mcd(b, a);
         }
         if (a.compareTo(b) == 0) {
             return a;
@@ -25,7 +39,7 @@ public class MetodosRSA {
         if (tmp.compareTo(BigInteger.ZERO) == 0) {
             return b;
         }
-        return maxComDiv(b, tmp);
+        return mcd(b, tmp);
     }
 
     public static BigInteger phiEulerPQ(BigInteger p, BigInteger q) {
